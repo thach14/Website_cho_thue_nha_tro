@@ -47,7 +47,7 @@ class TaiKhoanDao {
         $result = $stmt->get_result();
         if($result->num_rows > 0) {
             $row = $result->fetch_row();
-            $taiKhoan = new TaiKhoan($row[0], $row[1], $row[2]);
+            $taiKhoan = new TaiKhoan($row[0], $row[1], $row[3]);
             return $taiKhoan;
         }
         $stmt->close();

@@ -1,7 +1,7 @@
 <?php
  $connect = mysqli_connect('localhost', 'root', '', 'phongtrosinhvien');
  mysqli_set_charset($connect, 'utf8');
- $sql = "SELECT * from baidang where TrangThai = 1";
+ $sql = "SELECT * from baidang where TrangThai = 0";
  $result = mysqli_query($connect, $sql);
  $num = mysqli_num_rows($result);
 ?>
@@ -20,7 +20,7 @@
     <div class="container">
         <div class="title" style="display: flex;">
         <div class="title-l" style="width:90% ;">
-        <h2>Bài đăng đã duyệt</h2>
+        <h2>Bài đăng chưa duyệt</h2>
 
         </div>
         <div class="title-r" style="width:10% ;">
@@ -51,6 +51,7 @@
                     <td>'.$row['LuotXem'].'</td>
                     <td>'.$row['TenTaiKhoan'].'</td>
                     <td>
+                    <a type="button" class="btn btn-success" href="./index.php?action=duyetbaidang&id='.$row['MaBaiDang'].'">Duyệt</a>
                     <a type="button" class="btn btn-danger" href="./index.php?action=khoabaidang&id='.$row['MaBaiDang'].'">Khoá</a>
                     </td>
                 </tr>

@@ -5,6 +5,5 @@ if (isset($_GET['id'])){
     mysqli_set_charset($connect, 'utf8');
     $sql = "DELETE from quanhuyen where MaQuanHuyen = $id;";
     $result = mysqli_query($connect, $sql);
-    header('location: ../admin/index.php?action=danhsachquanhuyen');
 }
 ?>

@@ -14,9 +14,7 @@ class BaiDangDao {
         mysqli_set_charset($connect, 'utf8');
         $rs = array();
         $i = 0;
-        $sql = "SELECT ViewBaiDang.*, BaiDang.LuotXem "
-                . "FROM ViewBaiDang JOIN BaiDang ON ViewBaiDang.MaBaiDang = BaiDang.MaBaiDang "
-                . "ORDER BY ViewBaiDang.ThoiGianDang DESC LIMIT 10";
+        $sql = "SELECT ViewBaiDang.*, BaiDang.LuotXem FROM ViewBaiDang JOIN BaiDang ON ViewBaiDang.MaBaiDang = BaiDang.MaBaiDang and BaiDang.TrangThai = 1 ORDER BY ViewBaiDang.ThoiGianDang DESC LIMIT 10;";
         $result = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($result);
         $hinhAnh = new HinhAnhDao();
@@ -42,7 +40,7 @@ class BaiDangDao {
         $list = array(); $i = 0; $hinhAnhDao = new HinhAnhDao();
         $sql = "SELECT ViewBaiDang.MaPhong, ViewBaiDang.MaBaiDang, ViewBaiDang.HoTen,
                 ViewBaiDang.TieuDe, ViewBaiDang.ThoiGianDang, ViewBaiDang.GiaPhong, BaiDang.LuotXem
-                FROM ViewBaiDang JOIN BaiDang ON ViewBaiDang.MaBaiDang = BaiDang.MaBaiDang
+                FROM ViewBaiDang JOIN BaiDang ON ViewBaiDang.MaBaiDang = BaiDang.MaBaiDang and BaiDang.TrangThai = 1
                 ORDER BY ViewBaiDang.GiaPhong LIMIT 10";
         $result = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($result);
@@ -64,7 +62,7 @@ class BaiDangDao {
         mysqli_set_charset($connect, 'utf8');
         $list = array(); $i = 0; $hinhAnhDao = new HinhAnhDao();
         $sql = "  SELECT ViewBaiDang.*, BaiDang.LuotXem "
-                . "FROM ViewBaiDang JOIN BaiDang ON BaiDang.MaBaiDang = ViewBaiDang.MaBaiDang "
+                . "FROM ViewBaiDang JOIN BaiDang ON BaiDang.MaBaiDang = ViewBaiDang.MaBaiDang and BaiDang.TrangThai = 1 "
                 . "ORDER BY BaiDang.LuotXem DESC LIMIT 10";
         $result = mysqli_query($connect, $sql);
         if(mysqli_num_rows($result) > 0) {
@@ -89,7 +87,7 @@ class BaiDangDao {
         $i = 0;
         $hinhAnh = new HinhAnhDao();
         $sql = "  SELECT ViewBaiDang.*, BaiDang.LuotXem "
-                . "FROM ViewBaiDang JOIN BaiDang ON BaiDang.MaBaiDang = ViewBaiDang.MaBaiDang "
+                . "FROM ViewBaiDang JOIN BaiDang ON BaiDang.MaBaiDang = ViewBaiDang.MaBaiDang and BaiDang.TrangThai = 1 "
                 . "WHERE MONTH(ViewBaiDang.ThoiGianDang) = MONTH(CURRENT_DATE) LIMIT 12";
         $result = mysqli_query($connect, $sql);
         $num = mysqli_num_rows($result);
@@ -180,7 +178,7 @@ class BaiDangDao {
         mysqli_set_charset($connect, 'utf8');
         $sql = "SELECT ViewBaiDang.*, BaiDang.LuotXem, BaiDang.MoTa FROM ViewBaiDang
             JOIN PhongTro ON ViewBaiDang.MaBaiDang = PhongTro.MaBaiDang
-            JOIN BaiDang ON ViewBaiDang.MaBaiDang = BaiDang.MaBaiDang
+            JOIN BaiDang ON ViewBaiDang.MaBaiDang = BaiDang.MaBaiDang and BaiDang.TrangThai = 1
             WHERE ViewBaiDang.TieuDe LIKE '%{$TuKhoa}%'";
         if(isset($MaLoaiPhong) && $MaLoaiPhong != -1) {
             $sql = $sql . " AND PhongTro.MaLoaiPhong = {$MaLoaiPhong}";
