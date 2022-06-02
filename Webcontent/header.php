@@ -57,7 +57,7 @@ require_once '../Model/TaiKhoan.php';
                                 </li>
                                 
                                 <li>
-                                    <a href="">Quản lý bản tin</a>
+                                    <a href="list.php">Quản lý bản tin</a>
                                 </li>
                                 <li>
                                     <a href="account.php?tenTaiKhoan=<?php echo $tenTaiKhoan;?>">Tài khoản</a>
